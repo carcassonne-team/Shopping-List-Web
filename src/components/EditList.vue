@@ -1,7 +1,20 @@
 <template>
-  <div class="card m-auto mt-5">
+    <div class="card m-auto mt-5">
+      <div class="card-body">
+          <div class="form-group form-inline">
+            <h2 class="text-center">Sortowanie</h2>
+            <select class="form-control input-lg" v-model="filterValue">
+              <option value="categories">Wg kategorii </option>
+              <option value="alphabetically">Alfabetycznie</option>
+              <option value="own">Własne</option>
+            </select>
+          </div>
+      </div>
+    </div>
+
+  <div class="card m-auto mt-3">
     <div class="form-check form-check-inline">
-      <h2 class="form-check-inline"> asdas </h2>
+      <h2 class="form-check-inline"> Nazwa Listy </h2>
       <div class="dropdown mt-2 form-check-inline float-end">
         <i class="fas fa-ellipsis-v float-end fs-5 mt-2 mx-2 dropdown-toggle" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false"></i>
         <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
@@ -40,6 +53,11 @@
 
 export default {
   name:"ListView",
+  data(){
+    return {
+      filterValue: 'categories'
+    }
+  },
   methods: {
     deleteItem(){
       console.log('deleted')

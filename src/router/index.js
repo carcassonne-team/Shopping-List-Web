@@ -20,7 +20,12 @@ const routes = [
         path: "/login",
         name: "Login",
         component: () => import("../views/lists/Login"),
-    }
+    },
+    {
+      path: "/settings",
+      name: "Settings",
+      component: () => import("../views/lists/Settings.vue"),
+  },
 ]
 
 const router = createRouter({

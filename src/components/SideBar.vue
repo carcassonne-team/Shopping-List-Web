@@ -16,14 +16,14 @@
             </button>
           </div>
         </div>
-        <a href="#" class="list-group-item list-group-item-action bg-light"
-          ><i class="fas fa-shopping-cart"></i> Lista Zakupów</a
+        <router-link to="/" class="list-group-item list-group-item-action bg-light"
+          ><i class="fas fa-shopping-cart"></i> Lista Zakupów</router-link
         >
-        <a href="#" class="list-group-item list-group-item-action bg-light"
-          ><i class="fas fa-trash"></i> Kosz</a
+        <router-link to="settings" class="list-group-item list-group-item-action bg-light"
+          ><i class="fas fa-trash"></i> Kosz</router-link
         >
-        <a href="#" class="list-group-item list-group-item-action bg-light"
-          ><i class="fas fa-cog"></i> Ustawienia</a
+        <router-link to="settings" class="list-group-item list-group-item-action bg-light"
+          ><i class="fas fa-cog"></i> Ustawienia</router-link
         >
       </div>
     </div>

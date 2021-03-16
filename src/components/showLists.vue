@@ -51,7 +51,7 @@ components: {CreateListModal},
 
 <style scoped>
 .card {
-  width: 40rem;
+  max-width: 40rem;
   min-height: 6rem;
   transition: 0.3s ease;
 }
