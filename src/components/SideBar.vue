@@ -9,10 +9,10 @@
           </div>
           <div class="card-body text-center">
             <button type="button" class="btn btn-success text-center">
-              ZAŁÓŻ KONTO
+              <router-link to="/login" class="white routerBtn">ZAŁÓŻ KONTO</router-link>
             </button>
             <button type="button" class="btn btn-primary text-center pt-3">
-              ZALOGUJ SIĘ
+              <router-link to="/login" class="white routerBtn">ZALOGUJ SIĘ</router-link>
             </button>
           </div>
         </div>
@@ -95,6 +95,10 @@ export default {
 
 #page-content-wrapper {
   min-width: 100vw;
+}
+
+.routerBtn {
+  text-decoration: none;
 }
 
 .white {

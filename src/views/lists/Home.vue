@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import NavBar from '../../components/NavBar.vue';
+import NavBar from '../../components/SideBar.vue';
 import CreateList from '../../components/CreateList.vue';
 import showLists from '../../components/showLists.vue';
 
