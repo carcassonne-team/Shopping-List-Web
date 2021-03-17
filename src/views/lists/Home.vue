@@ -1,7 +1,7 @@
 <template>
   <nav-bar>
-      <create-list v-if="false"></create-list>
-      <show-lists name="nazwa listy" v-if="!false"></show-lists>
+      <create-list v-if="!false"></create-list>
+      <show-lists name="nazwa listy" v-if="false"></show-lists>
   </nav-bar>
 </template>
 

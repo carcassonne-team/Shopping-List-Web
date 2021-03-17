@@ -22,7 +22,6 @@
           <li><a class="dropdown-item" href="#">Wyczyść kupione</a></li>
         </ul>
       </div>
-      <i class="fas fa-cog icon float-end fs-5 mt-2 IconCursor mx-4" @click="settings"></i>
     </div>
     <ul class="list-group list-group-flush">
 

@@ -3,7 +3,11 @@ import { createRouter, createWebHistory } from 'vue-router'
 const routes = [
     {
       path: "/",
-      name: "Home",
+      redirect: '/lists'
+    },
+    {
+      path: "/lists",
+      name: "Lists",
       component: () => import("../views/lists/Home.vue"),
     },
     {
@@ -25,7 +29,13 @@ const routes = [
       path: "/settings",
       name: "Settings",
       component: () => import("../views/lists/Settings.vue"),
-  },
+    },
+    {
+        path: "/register",
+        name: "Register",
+        component: () => import("../views/lists/Register"),
+    },
+    { path: '/:pathMatch(.*)*', component: () => import("../views/lists/PageNotFound"), },
 ]
 
 const router = createRouter({

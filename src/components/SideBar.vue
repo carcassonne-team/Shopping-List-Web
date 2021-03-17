@@ -3,28 +3,8 @@
     <div class="bg-light border-right" id="sidebar-wrapper">
       <div class="sidebar-heading">Start</div>
       <div class="list-group list-group-flush">
-        <div class="card text-dark bg-primary mb-3 mt-3" style="max-width: 18rem">
-          <div class="card-header text-center white">
-            Chcesz skorzystać z wszystkich funkcji Shopping List ZMP?
-          </div>
-          <div class="card-body text-center">
-            <button type="button" class="btn btn-success text-center">
-              <router-link to="/login" class="white routerBtn">ZAŁÓŻ KONTO</router-link>
-            </button>
-            <button type="button" class="btn btn-primary text-center pt-3">
-              <router-link to="/login" class="white routerBtn">ZALOGUJ SIĘ</router-link>
-            </button>
-          </div>
-        </div>
-        <router-link to="/" class="list-group-item list-group-item-action bg-light"
-          ><i class="fas fa-shopping-cart"></i> Lista Zakupów</router-link
-        >
-        <router-link to="settings" class="list-group-item list-group-item-action bg-light"
-          ><i class="fas fa-trash"></i> Kosz</router-link
-        >
-        <router-link to="settings" class="list-group-item list-group-item-action bg-light"
-          ><i class="fas fa-cog"></i> Ustawienia</router-link
-        >
+        <is-not-logged></is-not-logged>
+        <side-menu></side-menu>
       </div>
     </div>
     <div id="page-content-wrapper">
@@ -42,8 +22,11 @@
           class="collapse navbar-collapse justify-content-end"
           id="navbarSupportedContent"
         >
-          <button type="button" class="btn btn-primary">
+          <button type="button" class="btn btn-primary" v-if="!false">
             <router-link to="/login" class="btn white">Log In</router-link>
+          </button>
+          <button type="button" class="btn btn-primary" v-if="false" @click="handleLogout">
+            <router-link to="/logout" class="btn white">Log Out</router-link>
           </button>
         </div>
       </nav>
@@ -55,16 +38,22 @@
 </template>
 
 <script>
+import isNotLogged from './sideBar/isNotLogged';
+import sideMenu from './sideBar/sideMenu';
 export default {
   data() {
     return {
       isActive: false,
     };
   },
+  components: {isNotLogged,sideMenu},
   methods: {
     switchBar() {
       this.isActive = !this.isActive;
     },
+    handleLogout(){
+      console.log('logout')
+    }
   },
 };
 </script>
@@ -84,6 +73,13 @@ export default {
   transition: margin 0.25s ease-out;
 }
 
+.dropdownImage {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: #ddd;
+}
+
 #sidebar-wrapper .sidebar-heading {
   padding: 0.875rem 1.25rem;
   font-size: 1.2rem;
@@ -95,10 +91,6 @@ export default {
 
 #page-content-wrapper {
   min-width: 100vw;
-}
-
-.routerBtn {
-  text-decoration: none;
 }
 
 .white {
