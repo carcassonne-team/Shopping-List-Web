@@ -1,41 +1,40 @@
 <template>
-  <div class="containerBG">
-    <router-link to="/"><i class="fas fa-arrow-left white fs-1 pt-3 px-3"></i></router-link>
-    <div class="container">
-      <div class="card position-absolute top-50 start-50 translate-middle">
-        <div class="card-body">
-          <form @submit.prevent="handleRegister" method="POST">
-            <div class="mb-3">
-              <label for="EmailInput" class="form-label">Email address</label>
-              <input type="email" class="form-control" id="EmailInput" v-model="email">
-            </div>
-            <div class="mb-3">
-              <label for="PassInput" class="form-label">Password</label>
-              <input type="password" class="form-control" id="PassInput" v-model="password">
-            </div>
-            <button type="submit" class="btn btn-primary mt-3">Submit</button>
-          </form>
-        </div>
+  <auth>
+    <form @submit.prevent="handleRegister" method="POST">
+      <div class="mb-3">
+        <label for="EmailInput" class="form-label">Email address</label>
+        <input type="email" class="form-control" id="EmailInput" v-model="email" required>
       </div>
-    </div>
-  </div>
+      <div class="mb-3">
+        <label for="PassInput" class="form-label">Password</label>
+        <input type="password" class="form-control" id="PassInput" v-model="password" required>
+      </div>
+      <div class="mb-3">
+        <label for="ConfPassInput" class="form-label">Confirm password</label>
+        <input type="password" class="form-control" id="ConfPassInput" v-model="confirmPassword" required>
+      </div>
+      <button type="submit" class="btn btn-primary mt-3">Register</button>
+    </form>
+  </auth>
 </template>
 
 <script>
-
+import Auth from "../../components/Auth";
 export default {
-  name:"Register",
-  data(){
+  name: "Register",
+  data() {
     return {
-      email: '',
-      password: ''
-    }
+      email: "",
+      password: "",
+      confirmPassword: ""
+    };
   },
-  methods:{
-    handleRegister(){
-      console.log("register")
-    }
-  }
+  components: { Auth },
+  methods: {
+    handleRegister() {
+      console.log("register");
+    },
+  },
 };
 </script>
 
@@ -55,7 +54,7 @@ export default {
   color: #fff;
 }
 
-.card{
+.card {
   max-width: 50rem;
   max-height: 50rem;
 }

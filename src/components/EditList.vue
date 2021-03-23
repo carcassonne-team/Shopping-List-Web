@@ -25,12 +25,13 @@
     </div>
     <ul class="list-group list-group-flush">
 
-      <li class="list-group-item">
-        <div class="input-group">
-          <i class="fas fa-plus-circle fs-5 icon blue" for="inpitPlus" ></i>
-          <input type="text" class="form-control productNameInput" id="inpitPlus" placeholder="Enter Name Here" >
-        </div>
-      </li>
+      <input-option v-if="category===''" @item-name="getCategory" :listItem="categories">
+        Wybierz kategorie:
+      </input-option>
+
+      <input-option v-else @item-name="getItem" :listItem="items">
+        Wybierz Przedmiot:
+      </input-option>
 
 <!--      v-for-->
       <li class="list-group-item py-3 fs-5 listItem">
@@ -49,34 +50,48 @@
 </template>
 
 <script>
-
+import InputOption from "./editList/InputOption";
 export default {
   name:"ListView",
   data(){
     return {
-      filterValue: 'categories'
+      filterValue: 'categories',
+      category: "",
+      item: "",
     }
   },
+  components: {InputOption},
   methods: {
     deleteItem(){
       console.log('deleted')
     },
-    settings(){
-      console.log('settings')
+    selectCategory(cat){
+      console.log(cat)
     },
     deleteList(){
       console.log('deleteList')
     },
+    getCategory(category){
+      this.category = category;
+    },
+    getItem(item){
+      this.item = item;
+    }
+  },
+  computed:{
+    categories(){
+      return ['Owoce','Warzywa','Nabiał'];
+    },
+    items(){
+      return ['chleb','bułka','dżem'];
+    }
   }
 };
 </script>
 
 <style scoped>
 .card {
-  width: 40rem;
-}
-.icon {
-  padding-top: 0.6rem;
+  max-width: 40rem;
 }
 
 .IconCursor {
@@ -95,6 +110,10 @@ productNameInput:focus {
 
 .blue {
   color: #00dd69;
+}
+
+.categoriesLists {
+  width: 25rem;
 }
 
 </style>

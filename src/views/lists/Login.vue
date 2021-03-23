@@ -1,38 +1,31 @@
 <template>
-  <div class="containerBG">
-    <router-link to="/">
-      <i class="fas fa-arrow-left white fs-1 px-3 py-2 pointer"></i>
-    </router-link>
-    <div class="container h-80">
-      <div class="row align-items-center h-100">
-        <div class="col-3 mx-auto">
-          <div class="text-center">
-            <img id="profile-img" class="profile-img-card passInput" src="../../assets/empty-lists.png" />
-            <p id="profile-name" class="profile-name-card"></p>
-            <form class="text-center mx-auto">
-              <div class="mx-auto text-center">
-                <form @submit.prevent="handleLogin" action="POST">
-                  <input type="password" name="password" id="inputPassword" class="form-control form-group passInput" placeholder="token" required autofocus v-model="token">
-                  <button class="btn btn-lg btn-primary btn-block mt-4 passInput" type="submit">enter</button>
-                </form>
-              </div>
-            </form>
-          </div>
-        </div>
+  <auth>
+    <form @submit.prevent="handleLogin" method="POST">
+      <div class="mb-3">
+        <label for="EmailInput" class="form-label">Email address</label>
+        <input type="email" class="form-control" id="EmailInput" v-model="email" required>
       </div>
-    </div>
-  </div>
+      <div class="mb-3">
+        <label for="PassInput" class="form-label">Password</label>
+        <input type="password" class="form-control" id="PassInput" v-model="password" required>
+      </div>
+      <button type="submit" class="btn btn-primary mt-3">Login</button>
+    </form>
+  </auth>
 </template>
 
 <script>
+import Auth from '../../components/Auth';
 
 export default {
   name:"Login",
   data(){
     return {
-      token: ''
+      email:"",
+      password:""
     }
   },
+  components: {Auth},
   methods: {
     handleLogin(){
       console.log('login')
