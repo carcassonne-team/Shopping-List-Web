@@ -35,6 +35,11 @@ const routes = [
         name: "Register",
         component: () => import("../views/lists/Register"),
     },
+    {
+        path: "/code",
+        name: "Access Code",
+        component: () => import("../views/lists/AccessCode"),
+    },
     { path: '/:pathMatch(.*)*', component: () => import("../views/lists/PageNotFound"), },
 ]
 

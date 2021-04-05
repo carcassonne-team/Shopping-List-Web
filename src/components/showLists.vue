@@ -28,11 +28,13 @@
               <i class="fas fa-ellipsis-v"></i>
             </button>
             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-              <li><a class="dropdown-item">Zmień nazwę</a></li>
-              <li><a class="dropdown-item">Udostępnij</a></li>
-              <li><a class="dropdown-item">Kopiuj</a></li>
-              <li><a class="dropdown-item">Usuń</a></li>
+              <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#renameModal">Zmień nazwę</a></li>
+              <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#shareList">Udostępnij</a></li>
+              <li><a class="dropdown-item" @click="deleteList">Usuń</a></li>
             </ul>
+
+            <rename-modal></rename-modal>
+            <shareList></shareList>
           </div>
         </div>
         <hr />
@@ -42,11 +44,13 @@
 </template>
 
 <script>
+import RenameModal from "../components/showList/RenameModal.vue";
+import shareList from '../components/showList/shareModal.vue'
 import CreateListModal from "./CreateListModal.vue";
 
 export default {
   props: ["name"],
-  components: { CreateListModal },
+  components: { CreateListModal,RenameModal,shareList },
   data(){
     return{
       
@@ -56,6 +60,10 @@ export default {
     showOptions() {
       console.log("asdas");
     },
+    deleteList(){
+      const conf = confirm("czy na pewno chcesz usunąć listę?");
+      console.log(conf)
+    }
   },
 };
 </script>
