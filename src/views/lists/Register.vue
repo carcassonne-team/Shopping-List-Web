@@ -1,6 +1,11 @@
 <template>
   <auth>
+    <p class="text-danger" v-if="errors">{{ errors }}</p>
     <form @submit.prevent="handleRegister" method="POST">
+      <div class="mb-3">
+        <label for="nameInput" class="form-label">Name</label>
+        <input type="text" class="form-control" id="nameInput" v-model="name" required>
+      </div>
       <div class="mb-3">
         <label for="EmailInput" class="form-label">Email address</label>
         <input type="email" class="form-control" id="EmailInput" v-model="email" required>
@@ -24,6 +29,7 @@ export default {
   name: "Register",
   data() {
     return {
+      name: "",
       email: "",
       password: "",
       confirmPassword: ""
@@ -31,10 +37,22 @@ export default {
   },
   components: { Auth },
   methods: {
-    handleRegister() {
-      console.log("register");
+    async handleRegister() {
+     await this.$store.dispatch('register', 
+      { 
+        name: this.name, 
+        email: this.email,
+        password: this.password, 
+        password_confirmation: this.confirmPassword
+      })
+      .then((res) => console.log(res));
     },
   },
+  computed: {
+    errors() {
+      return this.$store.getters.errors; 
+    }
+  }
 };
 </script>
 

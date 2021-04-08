@@ -1,5 +1,6 @@
 <template>
   <auth>
+    <p class="text-danger" v-if="errors">{{ errors }}</p>
     <form @submit.prevent="handleLogin" method="POST">
       <div class="mb-3">
         <label for="EmailInput" class="form-label">Email address</label>
@@ -22,13 +23,22 @@ export default {
   data(){
     return {
       email:"",
-      password:""
+      password:"",
+      error: '',
     }
   },
   components: {Auth},
   methods: {
-    handleLogin(){
-      console.log('login')
+    async handleLogin(){
+      let email = this.email
+      let password = this.password
+      await this.$store.dispatch('login', { email, password })
+      .catch(res => this.error = res.data.data.error)
+    }
+  },
+  computed: {
+    errors() {
+      return this.$store.getters.errors; 
     }
   }
 };
