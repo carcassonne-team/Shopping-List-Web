@@ -8,10 +8,20 @@
   <router-link to="settings" class="list-group-item list-group-item-action bg-light"
   ><i class="fas fa-cog"></i> Ustawienia</router-link
   >
-  <router-link to="logout" class="list-group-item list-group-item-action bg-light" v-if="false"
+  <router-link to="/" class="list-group-item list-group-item-action bg-light" @click="handleLogout"
   ><i class="fas fa-outdent"></i> Log Out</router-link
   >
 </template>
+
+<script>
+export default {
+  methods: {
+    async handleLogout(){
+      await this.$store.dispatch('logout');
+    },
+  },
+};
+</script>
 
 <style scoped>
 

@@ -3,8 +3,8 @@
     <div class="bg-light border-right" id="sidebar-wrapper">
       <div class="sidebar-heading">Start</div>
       <div class="list-group list-group-flush">
-        <is-not-logged></is-not-logged>
-        <side-menu></side-menu>
+        <is-not-logged v-if="!userAuth"></is-not-logged>
+        <side-menu v-else></side-menu>
       </div>
     </div>
     <div id="page-content-wrapper">
@@ -22,11 +22,11 @@
           class="collapse navbar-collapse justify-content-end"
           id="navbarSupportedContent"
         >
-          <button type="button" class="btn btn-primary" v-if="!false">
+          <button type="button" class="btn btn-primary" v-if="!userAuth">
             <router-link to="/login" class="btn white">Log In</router-link>
           </button>
-          <button type="button" class="btn btn-primary" v-if="false" @click="handleLogout">
-            <router-link to="/logout" class="btn white">Log Out</router-link>
+          <button type="button" class="btn btn-primary" v-else @click="handleLogout">
+            <router-link to="/" class="btn white">Log Out</router-link>
           </button>
         </div>
       </nav>
@@ -51,10 +51,15 @@ export default {
     switchBar() {
       this.isActive = !this.isActive;
     },
-    handleLogout(){
-      console.log('logout')
-    }
+    async handleLogout(){
+      await this.$store.dispatch('logout');
+    },
   },
+  computed: {
+    userAuth(){
+      return this.$store.getters.login;
+    }
+  }
 };
 </script>
 

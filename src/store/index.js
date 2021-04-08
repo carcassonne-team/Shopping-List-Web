@@ -1,23 +1,31 @@
 import { createStore } from 'vuex';
 import axios from 'axios';
 import router from '../router/index';
+import createPersistedState from 'vuex-persistedstate'
 
 export default createStore({
+  plugins: [createPersistedState({
+    storage: window.sessionStorage,
+  })],
+
   state: {
     status: '',
     token: '',
     user: {},
     errors: '',
+    login: false,
   },
   getters: {
     getToken: state => state.token,
     authStatus: state => state.status,
     errors: state => state.errors,
+    login: state => state.login,
   },
   mutations: {
     login(state, data) {
       state.token = data.token;
       state.user = data;
+      state.login = true;
       localStorage.setItem('token', data.token);
       console.log(data.token);
     },
@@ -26,6 +34,7 @@ export default createStore({
     },
     logout(state){
       state.token = '';
+      state.login = false;
     },
     errors(state, context){
       state.errors = context;
@@ -45,6 +54,7 @@ export default createStore({
         .catch(error => {
           console.log(error.response)
           context.commit('errors',error.response.data.error);
+          window.sessionStorage.setItem('error',error.response.data.error)
         });
     },
     async register(context, user){
@@ -61,6 +71,7 @@ export default createStore({
         .catch(error => {
           console.log(error.response);
           context.commit('errors',error.response.data);
+          window.sessionStorage.setItem('error',error.response.data.error)
         });
     },
     logout(context){
