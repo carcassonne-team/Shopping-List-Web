@@ -2,15 +2,18 @@
   <auth>
     <p class="text-danger" v-if="errors">{{ errors }}</p>
     <form @submit.prevent="handleLogin" method="POST">
+      <h1 class="text-center pb-2">Login</h1>
       <div class="mb-3">
-        <label for="EmailInput" class="form-label">Email address</label>
+        <label for="EmailInput" class="form-label orange">Email address</label>
         <input type="email" class="form-control" id="EmailInput" v-model="email" required>
       </div>
       <div class="mb-3">
-        <label for="PassInput" class="form-label">Password</label>
+        <label for="PassInput" class="form-label orange">Password</label>
         <input type="password" class="form-control" id="PassInput" v-model="password" required>
       </div>
-      <button type="submit" class="btn btn-primary mt-3">Login</button>
+      <div class="text-center">
+        <button type="submit" class="btn btn-primary mt-3">Login</button>
+      </div>
     </form>
   </auth>
 </template>
@@ -40,6 +43,9 @@ export default {
     errors() {
       return this.$store.getters.errors; 
     }
+  },
+  mounted() {
+    this.$store.dispatch('errors');
   }
 };
 </script>
@@ -71,5 +77,7 @@ export default {
   margin: auto;
 }
 
-
+.orange {
+  color: rgb(240, 127, 22);
+}
 </style>

@@ -77,6 +77,9 @@ export default createStore({
     logout(context){
       localStorage.removeItem('token');
       context.commit('logout');
+    },
+    errors(context){
+      context.commit('errors','');
     }
   },
   modules: {}

@@ -30,7 +30,7 @@
           </button>
         </div>
       </nav>
-      <div class="container-fluid">
+      <div class="">
           <slot></slot>
       </div>
     </div>
