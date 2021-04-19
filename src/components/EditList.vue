@@ -25,15 +25,18 @@
     </div>
     <ul class="list-group list-group-flush">
 
-      <input-option v-if="category===''" @item-name="getCategory" :listItem="categories">
+    <input-option 
+      v-if="!category"
+      @item-name="getCategory" 
+      :listItem="categories">
         Wybierz kategorie:
       </input-option>
+      
 
-      <input-option v-else @item-name="getItem" :listItem="items">
-        Wybierz Przedmiot:
+      <input-option v-else @item-name="getItem" :listItem="products">
+        Wybierz Produkt:
       </input-option>
 
-<!--      v-for-->
       <li class="list-group-item py-3 fs-5 listItem">
         <input class="form-check-input" type="checkbox" value="">
         Jabłko
@@ -58,6 +61,7 @@ export default {
       filterValue: 'categories',
       category: "",
       item: "",
+      id: this.$route.params.id
     }
   },
   components: {InputOption},
@@ -76,15 +80,26 @@ export default {
     },
     getItem(item){
       this.item = item;
+      this.category = "";
+    },
+    getCategories(){
+      this.$store.dispatch('getCategories');
+    },
+    getProducts(){
+      this.$store.dispatch('products');
     }
   },
   computed:{
     categories(){
-      return ['Owoce','Warzywa','Nabiał'];
+      return this.$store.getters.categories; 
     },
-    items(){
-      return ['chleb','bułka','dżem'];
+    products(){
+      return this.$store.getters.products; 
     }
+  },
+  mounted() {
+    this.getCategories();
+    this.getProducts();
   }
 };
 </script>

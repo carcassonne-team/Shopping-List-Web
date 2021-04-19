@@ -8,12 +8,15 @@
     <create-list-modal></create-list-modal>
   </div>
 
-  <div class="mt-4">
+  <div v-if="loading">loading</div>
+
+
+  <div class="mt-4" v-for="(list,i) in lists" :key="i" v-else>
     <div class="card mx-auto">
       <div class="card-body">
         <div class="d-flex bd-highlight mb-3">
-          <router-link to="/lists/4">
-            <h3>{{ name }}</h3>
+          <router-link :to="`/lists/${list.id}`">
+            <h3>{{i+1}} . {{ name }}</h3>
           </router-link>
           <h4 class="ms-auto p-2 bd-highlight">0/5</h4>
           <div class="dropdown">
@@ -30,7 +33,7 @@
             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
               <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#renameModal">Zmień nazwę</a></li>
               <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#shareList">Udostępnij</a></li>
-              <li><a class="dropdown-item" @click="deleteList">Usuń</a></li>
+              <li><a class="dropdown-item" @click="deleteList(list.id)">Usuń</a></li>
             </ul>
 
             <rename-modal></rename-modal>
@@ -53,18 +56,32 @@ export default {
   components: { CreateListModal,RenameModal,shareList },
   data(){
     return{
-      
+      loading: true,
     }
   },
   methods: {
     showOptions() {
       console.log("asdas");
     },
-    deleteList(){
+    deleteList(index){
       const conf = confirm("czy na pewno chcesz usunąć listę?");
-      console.log(conf)
+      console.log(conf,index)
+    },
+    async showLists(){
+      await this.$store.dispatch('getLists');
+      setTimeout(() => {
+        this.loading = false;
+      }, 500);
     }
   },
+  computed: {
+    lists(){
+      return this.$store.getters.lists;
+    }
+  },
+  mounted(){
+    this.showLists();
+  }
 };
 </script>
 

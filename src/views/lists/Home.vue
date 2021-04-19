@@ -1,14 +1,13 @@
 <template>
   <nav-bar>
       <div v-if="userAuth">
-        <create-list v-if="!false"></create-list>
-        <show-lists name="nazwa listy" v-if="false"></show-lists>
+        <create-list v-if="lists.length == 0"></create-list>
+        <show-lists name="nazwa listy" v-else></show-lists>
       </div>
 
       <div v-else>
         <guest-component></guest-component>
       </div>
-
   </nav-bar>
 </template>
 
@@ -16,14 +15,29 @@
 import NavBar from "../../components/SideBar.vue";
 import CreateList from "../../components/CreateList.vue";
 import showLists from "../../components/showLists.vue";
-import GuestComponent from '../../components/Home/GuestComponent.vue';
+import GuestComponent from "../../components/Home/GuestComponent.vue";
 
 export default {
+  data() {
+    return {
+    };
+  },
   components: { NavBar, CreateList, showLists, GuestComponent },
   computed: {
     userAuth() {
       return this.$store.getters.login;
     },
+    lists() {
+      return this.$store.getters.lists;
+    },
+  },
+  methods: {
+    async getLists() {
+     await this.$store.dispatch("getLists");
+    },
+  },
+  beforeMount() {
+    this.getLists();
   },
 };
 </script>
@@ -43,5 +57,4 @@ video {
   opacity: 0.7;
   z-index: 1;
 }
-
 </style>

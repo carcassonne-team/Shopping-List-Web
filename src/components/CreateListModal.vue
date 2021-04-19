@@ -38,10 +38,10 @@ export default {
   },
   methods: {
       handleCreateList(){
-          console.log(this.listName);
+          this.$store.dispatch('listCreate');
           this.listName = "";
       }
-  }
+  },
 };
 </script>
 
