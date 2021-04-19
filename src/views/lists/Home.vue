@@ -1,13 +1,21 @@
 <template>
-  <nav-bar>
+  <div v-if="loading">
+    <div class="spinner-border" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+  </div>
+
+  <nav-bar v-else>
+    <div>
       <div v-if="userAuth">
         <create-list v-if="lists.length == 0"></create-list>
-        <show-lists name="nazwa listy" v-else></show-lists>
+        <show-lists v-else></show-lists>
       </div>
 
       <div v-else>
         <guest-component></guest-component>
       </div>
+    </div>
   </nav-bar>
 </template>
 
@@ -20,9 +28,17 @@ import GuestComponent from "../../components/Home/GuestComponent.vue";
 export default {
   data() {
     return {
+      loading: false,
     };
   },
   components: { NavBar, CreateList, showLists, GuestComponent },
+  methods: {
+    async getLists() {
+      this.$store.dispatch("getLists").then(() => {
+        this.$router.push("/");
+      });
+    },
+  },
   computed: {
     userAuth() {
       return this.$store.getters.login;
@@ -31,13 +47,10 @@ export default {
       return this.$store.getters.lists;
     },
   },
-  methods: {
-    async getLists() {
-     await this.$store.dispatch("getLists");
-    },
-  },
-  beforeMount() {
+  created() {
+    this.loading = true;
     this.getLists();
+    this.loading = false;
   },
 };
 </script>

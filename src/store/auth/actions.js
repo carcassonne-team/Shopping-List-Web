@@ -15,6 +15,7 @@ export default {
         })
         .catch(error => {
           console.log(error.response)
+          localStorage.removeItem('token')
           context.commit('errors',error.response.data.error);
         });
     },

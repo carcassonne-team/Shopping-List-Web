@@ -5,7 +5,8 @@
     </label>
     <form @submit.prevent="">
       <input list="browsers" name="browser" id="browser" class="form-control"
-             v-model.trim="itemName" @keyup.enter.prevent="selectCategory(itemName)">
+             @keyup.enter.prevent="selectCategory(itemName)"
+             v-model.trim="itemName">
       <datalist id="browsers" >
         <option v-for="(item,i) in listItem" :key="i">{{ item.name }}</option>
       </datalist>

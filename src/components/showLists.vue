@@ -8,15 +8,18 @@
     <create-list-modal></create-list-modal>
   </div>
 
-  <div v-if="loading">loading</div>
+  <div v-if="loading">
+    <div class="spinner-border" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+  </div>
 
-
-  <div class="mt-4" v-for="(list,i) in lists" :key="i" v-else>
+  <div class="mt-4" v-for="(list, i) in lists" :key="i" v-else>
     <div class="card mx-auto">
       <div class="card-body">
         <div class="d-flex bd-highlight mb-3">
           <router-link :to="`/lists/${list.id}`">
-            <h3>{{i+1}} . {{ name }}</h3>
+            <h3>{{ i + 1 }} . Nazwa listy</h3>
           </router-link>
           <h4 class="ms-auto p-2 bd-highlight">0/5</h4>
           <div class="dropdown">
@@ -31,9 +34,25 @@
               <i class="fas fa-ellipsis-v"></i>
             </button>
             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-              <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#renameModal">Zmień nazwę</a></li>
-              <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#shareList">Udostępnij</a></li>
-              <li><a class="dropdown-item" @click="deleteList(list.id)">Usuń</a></li>
+              <li>
+                <a
+                  class="dropdown-item"
+                  data-bs-toggle="modal"
+                  data-bs-target="#renameModal"
+                  >Zmień nazwę</a
+                >
+              </li>
+              <li>
+                <a
+                  class="dropdown-item"
+                  data-bs-toggle="modal"
+                  data-bs-target="#shareList"
+                  >Udostępnij</a
+                >
+              </li>
+              <li>
+                <a class="dropdown-item" @click="deleteList(list.id)">Usuń</a>
+              </li>
             </ul>
 
             <rename-modal></rename-modal>
@@ -48,40 +67,41 @@
 
 <script>
 import RenameModal from "../components/showList/RenameModal.vue";
-import shareList from '../components/showList/shareModal.vue'
+import shareList from "../components/showList/shareModal.vue";
 import CreateListModal from "./CreateListModal.vue";
 
 export default {
   props: ["name"],
-  components: { CreateListModal,RenameModal,shareList },
-  data(){
-    return{
-      loading: true,
-    }
+  components: { CreateListModal, RenameModal, shareList },
+  data() {
+    return {
+      loading: false,
+    };
   },
   methods: {
     showOptions() {
       console.log("asdas");
     },
-    deleteList(index){
+    deleteList(index) {
       const conf = confirm("czy na pewno chcesz usunąć listę?");
-      console.log(conf,index)
+      console.log(conf, index);
     },
-    async showLists(){
-      await this.$store.dispatch('getLists');
+    showLists() {
+      this.loading = true;
       setTimeout(() => {
-        this.loading = false;
+        this.$store.dispatch("getLists");
       }, 500);
-    }
+      this.loading = false;
+    },
   },
   computed: {
-    lists(){
+    lists() {
       return this.$store.getters.lists;
-    }
+    },
   },
-  mounted(){
+  created() {
     this.showLists();
-  }
+  },
 };
 </script>
 

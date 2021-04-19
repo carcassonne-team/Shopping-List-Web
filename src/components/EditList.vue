@@ -24,7 +24,6 @@
       </div>
     </div>
     <ul class="list-group list-group-flush">
-
     <input-option 
       v-if="!category"
       @item-name="getCategory" 
@@ -37,9 +36,9 @@
         Wybierz Produkt:
       </input-option>
 
-      <li class="list-group-item py-3 fs-5 listItem">
-        <input class="form-check-input" type="checkbox" value="">
-        Jabłko
+      <li class="list-group-item py-3 fs-5 listItem" v-for="(product,i) in basket" :key="i">
+        <input class="form-check-input" type="checkbox" :value="product.product.name">
+        {{product.product.name}}
         <i class="fas fa-trash float-end IconCursor" @click="deleteItem"></i>
       </li>
     </ul>
@@ -61,7 +60,7 @@ export default {
       filterValue: 'categories',
       category: "",
       item: "",
-      id: this.$route.params.id
+      id: parseInt(this.$route.params.id)
     }
   },
   components: {InputOption},
@@ -81,12 +80,17 @@ export default {
     getItem(item){
       this.item = item;
       this.category = "";
+      this.$store.dispatch('addProduct',{product_list_id: this.id, product_id:3 })
+      .then(res => console.log(res));
     },
     getCategories(){
       this.$store.dispatch('getCategories');
     },
     getProducts(){
       this.$store.dispatch('products');
+    },
+    getBasket(){
+      this.$store.dispatch('getBasket',this.id);
     }
   },
   computed:{
@@ -95,11 +99,15 @@ export default {
     },
     products(){
       return this.$store.getters.products; 
+    },
+    basket(){
+      return this.$store.getters.basket; 
     }
   },
   mounted() {
     this.getCategories();
     this.getProducts();
+    this.getBasket();
   }
 };
 </script>
