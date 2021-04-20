@@ -1,8 +1,6 @@
 <template>
   <div v-if="loading">
-    <div class="spinner-border" role="status">
-      <span class="visually-hidden">Loading...</span>
-    </div>
+    <loading></loading>
   </div>
 
   <nav-bar v-else>
@@ -54,20 +52,3 @@ export default {
   },
 };
 </script>
-
-<style scoped>
-video {
-  width: auto;
-  height: auto;
-  transform: translateX(-50%) translateY(-50%);
-  z-index: 0;
-}
-
-.overlay {
-  height: 100%;
-  width: 100%;
-  background-color: #cd9557;
-  opacity: 0.7;
-  z-index: 1;
-}
-</style>
