@@ -14,8 +14,12 @@ export default {
       this.$swal.fire(
         "The Internet?",
         "That thing is still around?",
-        "question"
+        "success"
       );
+
+      setInterval(() => {
+          this.$router.push('/');
+      },1000)
     },
   },
 };

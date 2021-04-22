@@ -9,7 +9,7 @@ export default {
             product_id: data.product_id
         })
         .then(res => context.commit('addProduct',res.data))
-        .catch(err => console.log(err))
+        .catch(err => context.commit('addProduct',err.status))
     },
     async getBasket(context,data) {
         await axios.get('/basket/' + data)

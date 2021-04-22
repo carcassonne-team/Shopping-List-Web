@@ -29,6 +29,7 @@
 </template>
 
 <script>
+import AlertSuccess from './editList/AlertSuccess.vue'
 export default {
   name: "CreateListModal",
   data() {
@@ -40,6 +41,7 @@ export default {
       handleCreateList(){
           this.$store.dispatch('listCreate');
           this.listName = "";
+          AlertSuccess.successAlert('Lista została utworzona!');
       }
   },
 };

@@ -12,8 +12,4 @@ import 'sweetalert2/dist/sweetalert2.min.css';
 
 createApp(App).use(store).use(router).use(VueSweetalert2).component('loading',Loading).mount('#app')
 
-export default {
-    component: {
-    }
-  }
 

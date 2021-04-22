@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container" v-if="lists.lenght == 0">
     <img
       src="../assets/empty-lists.png"
       alt="empty-list"
@@ -18,9 +18,29 @@ import CreateListModal from './CreateListModal.vue';
 
 export default {
     name:"CreateList",
+    data(){
+      return {
+        loading: false,
+      }
+    },
     components: {CreateListModal},
     methods: {
-    }
+      showLists() {
+      this.$store.dispatch("getLists");
+    },
+    },
+    computed: {
+    lists() {
+      return this.$store.getters.lists;
+    },    
+  },
+    beforeMount() {
+      this.loading = true;
+      this.showLists();
+      setTimeout(() => {
+        this.loading = false;
+      },2000)
+    },
 };
 </script>
 

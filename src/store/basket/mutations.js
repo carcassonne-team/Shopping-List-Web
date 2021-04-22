@@ -1,6 +1,6 @@
 export default {
     addProduct(state, data) {
-      console.log(state,data);
+      state.productStatus = data.message;
     },
     getBasket(state, data) {
       state.basket = data;

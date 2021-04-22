@@ -1,17 +1,16 @@
 import axios from 'axios';
 import router from '../../router/index';
-import "../../axios.js";
+// import "../../axios.js";
 
 export default {
     async login(context, user) {
       await axios.post('auth/login', {
           email: user.email,
           password: user.password,
-          persistent: true
         })
         .then(response => {
+          localStorage.setItem('token',response.data.token);
           context.commit('login',response.data);
-          router.push('/');
         })
         .catch(error => {
           console.log(error.response)

@@ -9,12 +9,10 @@
   </div>
 
   <div v-if="loading">
-    <div class="spinner-border" role="status">
-      <span class="visually-hidden">Loading...</span>
-    </div>
+    <loading></loading>
   </div>
 
-  <div class="mt-4" v-for="(list, i) in lists" :key="i" v-else>
+  <div class="mt-4" v-for="(list, i) in lists" :key="i" v-else-if="lists">
     <div class="card mx-auto">
       <div class="card-body">
         <div class="d-flex bd-highlight mb-3">
@@ -75,7 +73,7 @@ export default {
   components: { CreateListModal, RenameModal, shareList },
   data() {
     return {
-      loading: false,
+      loading: true,
     };
   },
   methods: {
@@ -86,12 +84,8 @@ export default {
       const conf = confirm("czy na pewno chcesz usunąć listę?");
       console.log(conf, index);
     },
-    showLists() {
-      this.loading = true;
-      setTimeout(() => {
-        this.$store.dispatch("getLists");
-      }, 500);
-      this.loading = false;
+    async showLists() {
+      await this.$store.dispatch("getLists");
     },
   },
   computed: {
@@ -99,8 +93,12 @@ export default {
       return this.$store.getters.lists;
     },
   },
-  created() {
+  beforeMount() {
+    this.loading = true;
     this.showLists();
+    setTimeout(() => {
+        this.loading = false;
+      }, 1000);
   },
 };
 </script>

@@ -39,7 +39,7 @@
         </div>
       </div>
       <ul class="list-group list-group-flush">
-        <input-option @item-name="getItem" :listItem="products">
+        <input-option @item-name="addProduct" :listItem="products">
           Wybierz Produkt:
         </input-option>
 
@@ -72,13 +72,13 @@
 
 <script>
 import InputOption from "./editList/InputOption";
+import AlertSuccess from './editList/AlertSuccess.vue'
+
 export default {
   name: "ListView",
   data() {
     return {
       filterValue: "categories",
-      category: null,
-      item: null,
       id: parseInt(this.$route.params.id),
       loading: false,
     };
@@ -91,21 +91,10 @@ export default {
     deleteList() {
       console.log("usun liste");
     },
-    getItem(item) {
-      this.item = item;
-      this.category = "";
-      this.$store
+    async addProduct(item) {
+      await this.$store
         .dispatch("addProduct", { product_list_id: this.id, product_id: item })
-        .then((res) => console.log(res));
-    },
-    getCategories() {
-      this.$store.dispatch("getCategories");
-    },
-    getProducts() {
-      this.$store.dispatch("products");
-    },
-    getBasket() {
-      this.$store.dispatch("getBasket", this.id);
+        AlertSuccess.successAlert(this.$store.getters.productStatus);
     },
   },
   computed: {
@@ -121,10 +110,12 @@ export default {
   },
   created() {
     this.loading = true;
-    this.getCategories();
-    this.getProducts();
-    this.getBasket();
-    this.loading = false;
+    this.$store.dispatch("getCategories");
+    this.$store.dispatch("products");
+    this.$store.dispatch("getBasket", this.id);
+    setTimeout(() => {
+      this.loading = false
+    },1000)
   },
 };
 </script>

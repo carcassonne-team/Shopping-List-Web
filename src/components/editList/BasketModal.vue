@@ -51,6 +51,7 @@
 </template>
 
 <script>
+import AlertSuccess from './AlertSuccess'
 export default {
   name: "Basket Modal",
   data(){
@@ -64,25 +65,13 @@ export default {
     addCategory(){
       if(this.category){
         this.$store.dispatch("createCategory",{name: this.category})
-        .then(() => {
-          this.$swal.fire(
-          'Dobra robota!',
-          'Kategoria została dodana',
-          'success'
-        );
-        });
+        AlertSuccess.successAlert('Kategoria została dodana');
       }
     },
     addProduct(){
       if(this.categoryId,this.name){
         this.$store.dispatch("createProduct",{name: this.name, category_id: this.categoryId})
-        .then(() => {
-           this.$swal.fire(
-            'Dobra robota!',
-            'Produkt został dodany',
-            'success'
-          );
-        })
+        AlertSuccess.successAlert('Produkt został dodany');
       }
     },
     setProductId(event){

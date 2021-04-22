@@ -34,20 +34,6 @@ export default {
       this.$emit('item-name', event.target.value);
       this.itemName = "";
     },
-    getItem(e) {
-      console.log(e.target);
-      console.log(this.itemName);
-    },
-    selectChange(event) {
-      console.log(event.target.value);
-    },
-    showAlert() {
-      this.$swal.fire(
-        "The Internet?",
-        "That thing is still around?",
-        "question"
-      );
-    },
   },
 };
 </script>
