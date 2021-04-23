@@ -51,7 +51,7 @@
 </template>
 
 <script>
-import AlertSuccess from './AlertSuccess'
+import AlertSuccess from '../Alerts/AlertSuccess'
 export default {
   name: "Basket Modal",
   data(){

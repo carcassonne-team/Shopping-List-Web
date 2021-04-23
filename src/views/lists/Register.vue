@@ -1,6 +1,5 @@
 <template>
   <auth>
-    <p class="text-danger" v-if="errors">{{ errors }}</p>
     <form @submit.prevent="handleRegister" method="POST">
       <h1 class="text-center pb-2">Register for free account</h1>
       <div class="mb-3">
@@ -28,6 +27,7 @@
 
 <script>
 import Auth from "../../components/Auth";
+import AlertFail from '../../components/Alerts/AlertFail'
 export default {
   name: "Register",
   data() {
@@ -48,13 +48,12 @@ export default {
         password: this.password, 
         password_confirmation: this.confirmPassword
       })
-      .then((res) => console.log(res));
+      .then(() => {
+        if(this.$store.getters.statusError === 400){
+          AlertFail.AlertFail(this.$store.getters.errors);
+        }
+      });
     },
-  },
-  computed: {
-    errors() {
-      return this.$store.getters.errors; 
-    }
   },
   mounted(){
     this.$store.dispatch('errors');

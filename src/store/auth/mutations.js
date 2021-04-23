@@ -2,10 +2,10 @@ import router from "../../router";
 
 export default {
     login(state, data) {
+      state.statusError = 200;
       state.token = data.token;
       state.user = data;
       state.login = true;
-      // localStorage.setItem('token', data.token);
       router.push('/')
     },
     register(state, token){
@@ -17,5 +17,6 @@ export default {
     },
     errors(state, context){
       state.errors = context;
+      state.statusError = 400;
     }
 };

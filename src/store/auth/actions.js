@@ -11,6 +11,12 @@ export default {
         .then(response => {
           localStorage.setItem('token',response.data.token);
           context.commit('login',response.data);
+
+          setInterval(() => {
+            localStorage.removeItem('token');
+            context.commit('logout');
+            router.push('/login');
+          }, 3600000);
         })
         .catch(error => {
           console.log(error.response)

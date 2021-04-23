@@ -29,7 +29,7 @@
 </template>
 
 <script>
-import AlertSuccess from './editList/AlertSuccess.vue'
+import AlertSuccess from './Alerts/AlertSuccess'
 export default {
   name: "CreateListModal",
   data() {

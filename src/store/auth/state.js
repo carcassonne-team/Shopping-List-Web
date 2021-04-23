@@ -4,4 +4,5 @@ export default {
     user: {},
     errors: '',
     login: false,
+    statusError: 200
 };
