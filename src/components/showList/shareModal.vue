@@ -20,7 +20,7 @@
         <div class="modal-body">
           <div class="card">
             <div class="card-body">
-              <h2 class="text-center">5AH3C9</h2>
+              <h2 class="text-center">{{code}}</h2>
             </div>
           </div>
         </div>
@@ -35,6 +35,7 @@
 <script>
 export default {
   name: "CreateListModal",
+  props: ["code"],
   data() {
     return {
       listName: "",

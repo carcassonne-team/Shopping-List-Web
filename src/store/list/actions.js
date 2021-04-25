@@ -4,8 +4,8 @@ import "../../axios.js";
 
 
 export default {
-    async listCreate(context){
-        await axios.post('lists/create')
+    async listCreate(context,data){
+        await axios.post('lists/create',{name: data})
         .then(res => {
             context.commit('listCreate', res.data);            
         })

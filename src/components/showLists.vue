@@ -1,4 +1,5 @@
 <template>
+  <div v-if="lists.length > 0">
   <div class="pointer text-center pt-2 fs-1">
     <i
       class="fas fa-plus-circle green"
@@ -12,12 +13,12 @@
     <loading></loading>
   </div>
 
-  <div class="mt-4" v-for="(list, i) in lists" :key="i" v-else-if="lists">
+  <div class="mt-4" v-for="(list, i) in lists" :key="i" v-else>
     <div class="card mx-auto">
       <div class="card-body">
         <div class="d-flex bd-highlight mb-3">
           <router-link :to="`/lists/${list.id}`">
-            <h3>{{ i + 1 }} . Nazwa listy</h3>
+            <h3>{{list.name}}</h3>
           </router-link>
           <h4 class="ms-auto p-2 bd-highlight">0/5</h4>
           <div class="dropdown">
@@ -54,12 +55,13 @@
             </ul>
 
             <rename-modal></rename-modal>
-            <shareList></shareList>
+            <shareList :code="list.share_code"></shareList>
           </div>
         </div>
         <hr />
       </div>
     </div>
+  </div>
   </div>
 </template>
 
@@ -85,7 +87,7 @@ export default {
       console.log(conf, index);
     },
     async showLists() {
-      await this.$store.dispatch("getLists");
+      await this.$store.dispatch("getLists")
     },
   },
   computed: {

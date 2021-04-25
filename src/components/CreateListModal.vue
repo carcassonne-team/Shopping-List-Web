@@ -18,7 +18,7 @@
           ></button>
         </div>
         <div class="modal-body">
-          <input type="text" class="inputList" v-model="listName"/>
+          <input type="text" class="inputList" v-model.trim="listName" required/>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn" @click="handleCreateList">UTWÓRZ</button>
@@ -30,6 +30,8 @@
 
 <script>
 import AlertSuccess from './Alerts/AlertSuccess'
+import AlertFail from './Alerts/AlertFail'
+
 export default {
   name: "CreateListModal",
   data() {
@@ -39,9 +41,13 @@ export default {
   },
   methods: {
       handleCreateList(){
-          this.$store.dispatch('listCreate');
+        if(this.listName.length > 3){
+          this.$store.dispatch('listCreate',this.listName);
           this.listName = "";
           AlertSuccess.successAlert('Lista została utworzona!');
+        } else {
+          AlertFail.AlertFail('nazwa musi byc dłuższa od 3');
+        }
       }
   },
 };

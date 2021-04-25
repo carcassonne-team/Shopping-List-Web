@@ -4,7 +4,7 @@ import Auth from './auth/auth.js';
 import Lists from './list/list.js';
 import Categories from './categories/categories.js';
 import Products from './products/products.js';
-import Basket from './basket/basket.js';
+import Basket from './listContent/listContent.js';
 
 export default createStore({
   plugins: [createPersistedState({

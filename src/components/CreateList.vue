@@ -1,5 +1,5 @@
 <template>
-  <div class="container" v-if="lists.lenght == 0">
+  <div class="container" v-if="lists.length === 0">
     <img
       src="../assets/empty-lists.png"
       alt="empty-list"
