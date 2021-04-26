@@ -1,9 +1,11 @@
 export default {
     listCreate(state, data) {
-      console.log(data);
-      console.log(state.lists);
+      state.lists += data;
     },
     getLists(state,context){
       state.lists = context;
+    },
+    deleteList(state,id){
+      state.lists.splice(id,1);
     }
 }

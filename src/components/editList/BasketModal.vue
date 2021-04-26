@@ -66,12 +66,14 @@ export default {
       if(this.category){
         this.$store.dispatch("createCategory",{name: this.category})
         AlertSuccess.successAlert('Kategoria została dodana');
+        this.getCategories();
       }
     },
     addProduct(){
       if(this.categoryId,this.name){
         this.$store.dispatch("createProduct",{name: this.name, category_id: this.categoryId})
         AlertSuccess.successAlert('Produkt został dodany');
+        this.$store.dispatch("getProduct");
       }
     },
     setProductId(event){

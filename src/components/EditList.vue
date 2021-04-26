@@ -85,16 +85,23 @@ export default {
   },
   components: { InputOption },
   methods: {
-    deleteItem(index) {
-      console.log(index);
+    async deleteItem(index) {
+      await this.$store
+        .dispatch("deleteProduct", index)
+        AlertSuccess.successAlert("Produkt został usunięty");
+        this.$store.dispatch("getProduct", this.id);
     },
-    deleteList() {
-      console.log("usun liste");
+    async deleteList() {
+      await this.$store
+        .dispatch("deleteList", this.id)
+        AlertSuccess.successAlert("Lista została usunięta usunięty");
+        this.$router.push('/');
     },
     async addProduct(item) {
       await this.$store
         .dispatch("addProduct", { product_list_id: this.id, product_id: item })
         AlertSuccess.successAlert(this.$store.getters.productStatus);
+        this.$store.dispatch("getProduct", this.id);
     },
   },
   computed: {
@@ -112,7 +119,7 @@ export default {
     this.loading = true;
     this.$store.dispatch("getCategories");
     this.$store.dispatch("products");
-    this.$store.dispatch("getBasket", this.id);
+    this.$store.dispatch("getProduct", this.id);
     setTimeout(() => {
       this.loading = false
     },1000)

@@ -8,9 +8,6 @@ export default {
             text: text,
             icon: "success",
           });
-          setInterval(() => {
-          location.reload()
-        }, 2000);
     }
 }
 </script>

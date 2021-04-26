@@ -28,7 +28,6 @@
               id="dropdownMenuButton1"
               data-bs-toggle="dropdown"
               aria-expanded="false"
-              @click="showOptions"
             >
               <i class="fas fa-ellipsis-v"></i>
             </button>
@@ -69,6 +68,7 @@
 import RenameModal from "../components/showList/RenameModal.vue";
 import shareList from "../components/showList/shareModal.vue";
 import CreateListModal from "./CreateListModal.vue";
+import AlertSuccess from './Alerts/AlertSuccess'
 
 export default {
   props: ["name"],
@@ -79,12 +79,14 @@ export default {
     };
   },
   methods: {
-    showOptions() {
-      console.log("asdas");
-    },
-    deleteList(index) {
+    async deleteList(index) {
       const conf = confirm("czy na pewno chcesz usunąć listę?");
-      console.log(conf, index);
+      if(conf){
+        await this.$store
+        .dispatch("deleteList", index)
+        AlertSuccess.successAlert("Lista Została usunięta");
+        this.showLists();
+      }
     },
     async showLists() {
       await this.$store.dispatch("getLists")

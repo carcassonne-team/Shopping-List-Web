@@ -45,6 +45,7 @@ export default {
           this.$store.dispatch('listCreate',this.listName);
           this.listName = "";
           AlertSuccess.successAlert('Lista została utworzona!');
+          this.$store.dispatch('getLists');
         } else {
           AlertFail.AlertFail('nazwa musi byc dłuższa od 3');
         }

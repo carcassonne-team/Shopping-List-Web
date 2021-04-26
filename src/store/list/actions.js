@@ -15,8 +15,17 @@ export default {
     },
     async getLists(context){
         await axios.get('lists')
-        .then(res => {
+        .then((res) => {
             context.commit('getLists', res.data);            
+        })
+        .catch(err => {
+            console.log(err);
+        })
+    },
+    async deleteList(context,id){
+        await axios.delete('lists/' + id)
+        .then(() => {
+            context.commit('deleteList', id);             
         })
         .catch(err => {
             console.log(err);
