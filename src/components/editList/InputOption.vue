@@ -37,3 +37,9 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.form-control {
+  overflow-y:scroll;
+}
+</style>

@@ -73,7 +73,7 @@ export default {
       if(this.categoryId,this.name){
         this.$store.dispatch("createProduct",{name: this.name, category_id: this.categoryId})
         AlertSuccess.successAlert('Produkt został dodany');
-        this.$store.dispatch("getProduct");
+        this.$store.dispatch("products");
       }
     },
     setProductId(event){

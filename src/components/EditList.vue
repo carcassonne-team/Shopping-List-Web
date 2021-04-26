@@ -87,9 +87,9 @@ export default {
   methods: {
     async deleteItem(index) {
       await this.$store
-        .dispatch("deleteProduct", index)
+        .dispatch("deleteProductFromList", index)
         AlertSuccess.successAlert("Produkt został usunięty");
-        this.$store.dispatch("getProduct", this.id);
+        this.$store.dispatch("getProductOnList", this.id);
     },
     async deleteList() {
       await this.$store
@@ -99,9 +99,9 @@ export default {
     },
     async addProduct(item) {
       await this.$store
-        .dispatch("addProduct", { product_list_id: this.id, product_id: item })
+        .dispatch("addProductToList", { product_list_id: this.id, product_id: item })
         AlertSuccess.successAlert(this.$store.getters.productStatus);
-        this.$store.dispatch("getProduct", this.id);
+        this.$store.dispatch("getProductOnList", this.id);
     },
   },
   computed: {
@@ -119,7 +119,7 @@ export default {
     this.loading = true;
     this.$store.dispatch("getCategories");
     this.$store.dispatch("products");
-    this.$store.dispatch("getProduct", this.id);
+    this.$store.dispatch("getProductOnList", this.id);
     setTimeout(() => {
       this.loading = false
     },1000)
