@@ -45,6 +45,7 @@
                   class="dropdown-item"
                   data-bs-toggle="modal"
                   data-bs-target="#shareList"
+                  @click="share_code = list.share_code"
                   >Udostępnij</a
                 >
               </li>
@@ -54,7 +55,7 @@
             </ul>
 
             <rename-modal></rename-modal>
-            <shareList :code="list.share_code"></shareList>
+            <shareList :code="share_code"></shareList>
           </div>
         </div>
         <hr />
@@ -76,6 +77,7 @@ export default {
   data() {
     return {
       loading: true,
+      share_code: ""
     };
   },
   methods: {

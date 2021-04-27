@@ -7,5 +7,8 @@ export default {
     },
     deleteList(state,id){
       state.lists.splice(id,1);
+    },
+    shareCode(__state,code){
+      console.log(code);
     }
 }

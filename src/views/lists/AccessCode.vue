@@ -26,8 +26,8 @@ export default {
   },
   components: {SideBar},
   methods:{
-    listHandle(){
-      this.$router.push('lists');
+    async listHandle(){
+      await this.$store.dispatch('shareCode', this.code);
     }
   }
 }

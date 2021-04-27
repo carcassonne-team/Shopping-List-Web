@@ -30,5 +30,15 @@ export default {
         .catch(err => {
             console.log(err);
         })
-    }
+    },
+    async shareCode(context,code){
+        console.log(code);
+        await axios.post('lists/share',{share_code: code})
+        .then((res) => {
+            context.commit('shareCode', res.data);             
+        })
+        .catch(err => {
+            console.log(err);
+        })
+    },
 }
