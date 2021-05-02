@@ -51,7 +51,8 @@
           <input
             class="form-check-input"
             type="checkbox"
-            :value="product.product.name"
+            :value="product.id"
+            v-model="productInBasket"
           />
           {{ product.product.name }}
           <i
@@ -79,6 +80,7 @@ export default {
   data() {
     return {
       filterValue: "categories",
+      productInBasket: [],
       id: parseInt(this.$route.params.id),
       loading: false,
     };
