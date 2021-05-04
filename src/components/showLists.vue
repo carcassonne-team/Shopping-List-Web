@@ -20,7 +20,7 @@
           <router-link :to="`/lists/${list.id}`">
             <h3>{{list.name}}</h3>
           </router-link>
-          <h4 class="ms-auto p-2 bd-highlight">0/5</h4>
+          <h4 class="ms-auto p-2 bd-highlight"></h4>
           <div class="dropdown">
             <button
               class="btn btn-secondary dropdown-toggle"
@@ -72,6 +72,7 @@ import CreateListModal from "./CreateListModal.vue";
 import AlertSuccess from './Alerts/AlertSuccess'
 
 export default {
+  name: "show Lists",
   props: ["name"],
   components: { CreateListModal, RenameModal, shareList },
   data() {
@@ -104,7 +105,7 @@ export default {
     this.showLists();
     setTimeout(() => {
         this.loading = false;
-      }, 1000);
+    }, 2000);
   },
 };
 </script>

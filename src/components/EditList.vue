@@ -62,12 +62,6 @@
         </li>
       </ul>
     </div>
-
-    <div class="card mt-5 m-auto">
-      <div class="card-body">
-        <p class="text-center pt-2">Do Kupienia: 50.00 zł Kupione: 0.00 zł</p>
-      </div>
-    </div>
   </div>
 </template>
 
