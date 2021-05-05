@@ -1,15 +1,20 @@
 <template>
-  <div class="container" v-if="lists.length === 0">
-    <img
-      src="../assets/empty-lists.png"
-      alt="empty-list"
-      class="pt-5 image center"
-    />
-    <h5 class="text-center pt-5 text-muted">
-      Stwórz swoją pierwszą listę. Zaplanuj zakupy szybciej i wygodniej.
-    </h5>
-    <button type="button" class="btn btn-primary center mt-4" data-bs-toggle="modal" data-bs-target="#exampleModal">STWÓRZ LISTĘ</button>
-    <create-list-modal></create-list-modal>
+  <div v-if="loading">
+  </div>
+
+  <div v-else>
+    <div class="container" v-if="lists.length === 0">
+      <img
+        src="../assets/empty-lists.png"
+        alt="empty-list"
+        class="pt-5 image center"
+      />
+      <h5 class="text-center pt-5 text-muted">
+        Stwórz swoją pierwszą listę. Zaplanuj zakupy szybciej i wygodniej.
+      </h5>
+      <button type="button" class="btn btn-primary center mt-4" data-bs-toggle="modal" data-bs-target="#exampleModal">STWÓRZ LISTĘ</button>
+      <create-list-modal></create-list-modal>
+    </div>
   </div>
 </template>
 
@@ -39,7 +44,7 @@ export default {
       this.showLists();
       setTimeout(() => {
         this.loading = false;
-      },2000)
+      },1000)
     },
 };
 </script>
