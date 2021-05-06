@@ -33,6 +33,7 @@ export default {
     selectCategory(event) {
       this.$emit('item-name', event.target.value);
       this.itemName = "";
+      event.target.value = 'produkty...';
     },
   },
 };

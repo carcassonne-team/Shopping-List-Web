@@ -5,7 +5,7 @@
   <div v-else>
     <div class="container" v-if="lists.length === 0">
       <img
-        src="../assets/empty-lists.png"
+        src="../../assets/empty-lists.png"
         alt="empty-list"
         class="pt-5 image center"
       />
@@ -19,7 +19,7 @@
 </template>
 
 <script>
-import CreateListModal from './CreateListModal.vue';
+import CreateListModal from '../showList/CreateListModal';
 
 export default {
     name:"CreateList",

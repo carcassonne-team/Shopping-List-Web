@@ -66,8 +66,8 @@
 </template>
 
 <script>
-import InputOption from "./editList/InputOption";
-import AlertSuccess from './Alerts/AlertSuccess'
+import InputOption from "../editList/InputOption";
+import AlertSuccess from '../Alerts/AlertSuccess'
 
 export default {
   name: "ListView",
@@ -118,7 +118,7 @@ export default {
     this.$store.dispatch("getProductOnList", this.id);
     setTimeout(() => {
       this.loading = false
-    },1000)
+    },2000)
   },
 };
 </script>

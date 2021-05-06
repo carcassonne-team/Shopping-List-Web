@@ -29,8 +29,8 @@
 </template>
 
 <script>
-import AlertSuccess from './Alerts/AlertSuccess'
-import AlertFail from './Alerts/AlertFail'
+import AlertSuccess from '../Alerts/AlertSuccess'
+import AlertFail from '../Alerts/AlertFail'
 
 export default {
   name: "CreateListModal",

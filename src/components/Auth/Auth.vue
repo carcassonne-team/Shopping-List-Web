@@ -31,7 +31,7 @@ export default {
 
 <style scoped>
 .containerBG {
-  background-image: url("../assets/loginBg.jpg");
+  background-image: url("../../assets/loginBg.jpg");
   width: 100vw;
   height: 100vh;
 }

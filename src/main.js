@@ -2,7 +2,7 @@ import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router'
 import store from './store'
-import Loading from './components/Loading.vue';
+import Loading from './components/Alerts/Loading.vue';
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap";
 import "./axios.js";

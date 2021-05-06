@@ -18,7 +18,7 @@
 </template>
 
 <script>
-import Auth from '../../components/Auth';
+import Auth from '../../components/Auth/Auth';
 import AlertFail from '../../components/Alerts/AlertFail'
 
 export default {

@@ -16,7 +16,7 @@ export default {
       state.login = false;
     },
     errors(state, context){
-      state.errors = context;
-      state.statusError = 400;
+      state.errors = context.data;
+      state.statusError = context.status;
     }
 };

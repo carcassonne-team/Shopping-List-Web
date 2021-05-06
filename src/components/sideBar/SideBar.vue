@@ -38,8 +38,8 @@
 </template>
 
 <script>
-import isNotLogged from './sideBar/isNotLogged';
-import sideMenu from './sideBar/sideMenu';
+import isNotLogged from './isNotLogged';
+import sideMenu from './sideMenu';
 export default {
   data() {
     return {

@@ -8,7 +8,7 @@
           <h2>Dołącz do nas!</h2>
           <div class="d-flex justify-content-center justify-content-lg-start">
             <router-link to="/register" class="btn-get-started scrollto">Zarejestruj się</router-link>
-            <router-link to="/register" class="glightbox btn-watch-video">Zaloguj się</router-link>
+            <router-link to="/login" class="glightbox btn-watch-video">Zaloguj się</router-link>
           </div>
         </div>
         <div class="col-lg-6 order-1 order-lg-2 hero-img" data-aos="zoom-in" data-aos-delay="200">
@@ -19,10 +19,6 @@
 
   </section>
 </template>
-
-<script>
-export default {};
-</script>
 
 <style scoped>
 @import url('../../assets/css/guest.css');

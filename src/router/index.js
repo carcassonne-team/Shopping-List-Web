@@ -11,11 +11,6 @@ const routes = [
       component: () => import("../views/lists/Home.vue"),
     },
     {
-      path: "/test",
-      name: "Test",
-      component: () => import("../views/lists/Test.vue"),
-    },
-    {
         path: "/lists/:id",
         name: "List",
         component: () => import("../views/lists/ListView"),
@@ -36,14 +31,6 @@ const routes = [
             next(true)
           }
         }
-    },
-    {
-      path: "/settings",
-      name: "Settings",
-      component: () => import("../views/lists/Settings.vue"),
-      meta: {
-        requiresAuth: true,
-      },
     },
     {
         path: "/register",

@@ -37,8 +37,7 @@ export default {
         })
         .catch(error => {
           console.log(error.response);
-          context.commit('errors',error.response.data);
-          window.sessionStorage.setItem('error',error.response.data.error)
+          context.commit('errors',error.response);
         });
     },
     logout(context){

@@ -5,8 +5,8 @@
 </template>
 
 <script>
-import NavBar from '../../components/SideBar.vue';
-import EditList from '../../components/EditList.vue';
+import NavBar from '../../components/sideBar/SideBar';
+import EditList from '../../components/editList/EditList.vue';
 
 export default {
   name:"ListView",
