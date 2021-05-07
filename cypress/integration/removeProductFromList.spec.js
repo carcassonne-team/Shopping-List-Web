@@ -1,5 +1,5 @@
-describe('Logging', () => {
-  it('testing logging to application', () => {
+describe('Remove product from list', () => {
+  it('testing Removing product from list', () => {
     cy.visit('http://localhost:8080/login')
     cy.get('input#EmailInput').type('q@wp.pl')
     cy.get('input#PassInput').type('q@wp.pl')
