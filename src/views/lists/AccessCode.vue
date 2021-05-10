@@ -2,13 +2,13 @@
   <side-bar>
     <div class="card">
       <div class="card-body">
-        <h5 class="card-title text-center">WPISZ KOD DOSTEPU DO LISTY</h5>
+        <h5 class="card-title text-center">ENTER YOUR LIST ACCESS CODE</h5>
         <div class="pt-3">
         <input type="text" class="form-control text-center" id="code" aria-describedby="code" v-model="code" @input="code = $event.target.value.toUpperCase()">
-        <div id="emailHelp" class="form-text text-center">Kod umożliwi ci przejście do innej listy zakupowej</div>
+        <div id="emailHelp" class="form-text text-center">The code will allow you to switch to another shopping list</div>
       </div>
         <div class="text-center">
-          <a href="#" class="btn btn-primary center mt-3" @click="listHandle">Przejdź do Listy</a>
+          <a href="#" class="btn btn-primary center mt-3" @click="listHandle">Go to List</a>
         </div>
       </div>
     </div>

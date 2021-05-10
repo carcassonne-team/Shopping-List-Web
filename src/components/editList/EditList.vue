@@ -4,22 +4,9 @@
   </div>
 
   <div v-else>
-    <div class="card m-auto mt-5">
-      <div class="card-body">
-        <div class="form-group form-inline">
-          <h2 class="text-center">Sortowanie</h2>
-          <select class="form-control input-lg" v-model="filterValue">
-            <option value="categories">Wg kategorii</option>
-            <option value="alphabetically">Alfabetycznie</option>
-            <option value="own">Własne</option>
-          </select>
-        </div>
-      </div>
-    </div>
-
-    <div class="card m-auto mt-3">
+    <div class="card m-auto mt-3 mt-5">
       <div class="form-check form-check-inline">
-        <h2 class="form-check-inline">Nazwa Listy</h2>
+        <h2 class="form-check-inline">List name</h2>
         <div class="dropdown mt-2 form-check-inline float-end">
           <i
             class="fas fa-ellipsis-v float-end fs-5 mt-2 mx-2 dropdown-toggle"
@@ -31,16 +18,16 @@
           <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
             <li>
               <a class="dropdown-item" href="#" @click="deleteList"
-                >Usuń Liste</a
+                >Delete List</a
               >
             </li>
-            <li><a class="dropdown-item" href="#">Wyczyść kupione</a></li>
+            <li><a class="dropdown-item" href="#">Clear bought</a></li>
           </ul>
         </div>
       </div>
       <ul class="list-group list-group-flush">
         <input-option @item-name="addProduct" :listItem="products">
-          Wybierz Produkt:
+          Select Product:
         </input-option>
 
         <li
@@ -84,13 +71,13 @@ export default {
     async deleteItem(index) {
       await this.$store
         .dispatch("deleteProductFromList", index)
-        AlertSuccess.successAlert("Produkt został usunięty");
+        AlertSuccess.successAlert("Product has been deleted");
         this.$store.dispatch("getProductOnList", this.id);
     },
     async deleteList() {
       await this.$store
         .dispatch("deleteList", this.id)
-        AlertSuccess.successAlert("Lista została usunięta usunięty");
+        AlertSuccess.successAlert("List has been deleted");
         this.$router.push('/');
     },
     async addProduct(item) {

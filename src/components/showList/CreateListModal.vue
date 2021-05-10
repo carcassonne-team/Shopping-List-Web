@@ -9,7 +9,7 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Nazwa nowej listy</h5>
+          <h5 class="modal-title" id="exampleModalLabel">New list name</h5>
           <button
             type="button"
             class="btn-close"
@@ -21,7 +21,7 @@
           <input type="text" class="inputList" v-model.trim="listName" required/>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn" @click="handleCreateList">UTWÓRZ</button>
+          <button type="button" class="btn" @click="handleCreateList">CREATE</button>
         </div>
       </div>
     </div>
@@ -44,10 +44,10 @@ export default {
         if(this.listName.length > 3){
           this.$store.dispatch('listCreate',this.listName);
           this.listName = "";
-          AlertSuccess.successAlert('Lista została utworzona!');
+          AlertSuccess.successAlert('The list has been created!');
           this.$store.dispatch('getLists');
         } else {
-          AlertFail.AlertFail('nazwa musi byc dłuższa od 3');
+          AlertFail.AlertFail('name must be longer than 3');
         }
       }
   },

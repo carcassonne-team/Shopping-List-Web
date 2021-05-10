@@ -38,7 +38,7 @@
                       class="dropdown-item"
                       data-bs-toggle="modal"
                       data-bs-target="#renameModal"
-                      >Zmień nazwę</a
+                      >Rename</a
                     >
                   </li>
                   <li>
@@ -47,12 +47,12 @@
                       data-bs-toggle="modal"
                       data-bs-target="#shareList"
                       @click="share_code = list.share_code"
-                      >Udostępnij</a
+                      >Share</a
                     >
                   </li>
                   <li>
                     <a class="dropdown-item" @click="deleteList(list.id)"
-                      >Usuń</a
+                      >Delete</a
                     >
                   </li>
                 </ul>
@@ -87,10 +87,10 @@ export default {
   },
   methods: {
     async deleteList(index) {
-      const conf = confirm("czy na pewno chcesz usunąć listę?");
+      const conf = confirm("Are you sure you want to delete the list?");
       if (conf) {
         await this.$store.dispatch("deleteList", index);
-        AlertSuccess.successAlert("Lista Została usunięta");
+        AlertSuccess.successAlert("List has been deleted");
         this.showLists();
       }
     },

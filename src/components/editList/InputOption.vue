@@ -5,7 +5,7 @@
     </label>
     <form @submit.prevent="" class="input-group">
       <select class="form-control" @change="selectCategory($event)">
-        <option selected disabled>produkty...</option>
+        <option selected disabled>products...</option>
         <option v-for="(item, i) in listItem" :key="i" :value="item.id">
           {{ item.name }}
         </option>
@@ -33,7 +33,7 @@ export default {
     selectCategory(event) {
       this.$emit('item-name', event.target.value);
       this.itemName = "";
-      event.target.value = 'produkty...';
+      event.target.value = 'products...';
     },
   },
 };

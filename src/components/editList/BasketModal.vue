@@ -3,7 +3,7 @@
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Dodawanie Produktu</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Adding a Product</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
@@ -12,30 +12,30 @@
   <div class="col-sm-6">
     <div class="card">
       <div class="card-body">
-        <h5 class="card-title">Dodaj kategorie</h5>
+        <h5 class="card-title">Add Categories</h5>
         <div class="input-group mb-3">
           <span class="input-group-text" id="basic-addon1"><i class="fab fa-cuttlefish"></i></span>
-          <input type="text" class="form-control" placeholder="kategoria" v-model="category">
+          <input type="text" class="form-control" placeholder="category" v-model="category">
         </div>
-        <a href="#" class="btn btn-primary d-flex justify-content-center" @click="addCategory">Dodaj</a>
+        <a href="#" class="btn btn-primary d-flex justify-content-center" @click="addCategory">Add</a>
       </div>
     </div>
   </div>
   <div class="col-sm-6">
     <div class="card">
       <div class="card-body">
-        <h5 class="card-title">Dodaj produkt</h5>
+        <h5 class="card-title">Add product</h5>
         <select class="form-select" aria-label="Default select example" @change="setProductId($event)">
-          <option selected disabled>Wybierz kategorie</option>
+          <option selected disabled>Select categories</option>
           <option v-for="(item, i) in categories" :key="i" :value="item.id">
           {{ item.name }}
           </option>
         </select>
         <div class="input-group mt-3">
           <span class="input-group-text" id="basic-addon1"><i class="fab fa-product-hunt"></i></span>
-          <input type="text" class="form-control" placeholder="nazwa produktu" v-model.trim="name">
+          <input type="text" class="form-control" placeholder="protuct name" v-model.trim="name">
         </div>
-        <a href="#" class="btn btn-primary mt-3 d-flex justify-content-center" @click="addProduct">Dodaj</a>
+        <a href="#" class="btn btn-primary mt-3 d-flex justify-content-center" @click="addProduct">Add</a>
       </div>
     </div>
   </div>
@@ -65,14 +65,14 @@ export default {
     addCategory(){
       if(this.category){
         this.$store.dispatch("createCategory",{name: this.category})
-        AlertSuccess.successAlert('Kategoria została dodana');
+        AlertSuccess.successAlert('Category has been added');
         this.getCategories();
       }
     },
     addProduct(){
       if(this.categoryId,this.name){
         this.$store.dispatch("createProduct",{name: this.name, category_id: this.categoryId})
-        AlertSuccess.successAlert('Produkt został dodany');
+        AlertSuccess.successAlert('Product has been added');
         this.$store.dispatch("products");
       }
     },
