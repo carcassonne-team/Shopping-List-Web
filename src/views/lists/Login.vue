@@ -38,7 +38,7 @@ export default {
       await this.$store.dispatch('login', { email, password })
       .then(() => {
         if(this.$store.getters.statusError === 400){
-          AlertFail.AlertFail(this.$store.getters.errors);
+          AlertFail.AlertFail("wrong email or password");
         }
       });
     }

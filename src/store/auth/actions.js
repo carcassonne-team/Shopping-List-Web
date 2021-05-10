@@ -1,6 +1,5 @@
 import axios from 'axios';
 import router from '../../router/index';
-// import "../../axios.js";
 
 export default {
     async login(context, user) {
@@ -19,9 +18,9 @@ export default {
           }, 3600000);
         })
         .catch(error => {
-          console.log(error.response)
-          localStorage.removeItem('token')
-          context.commit('errors',error.response.data.error);
+          console.log(error.response);
+          localStorage.removeItem('token');
+          context.commit('errors',error.response);
         });
     },
     async register(context, user){
