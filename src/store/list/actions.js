@@ -31,13 +31,13 @@ export default {
         })
     },
     async shareCode(context,code){
-        console.log(code);
         await axios.post('lists/share',{share_code: code})
-        .then((res) => {
-            context.commit('shareCode', res.data);             
+        .then(() => {
+            context.commit('shareCode', 200);         
         })
         .catch(err => {
             console.log(err);
+            context.commit('shareCode', 500);     
         })
     },
 }
